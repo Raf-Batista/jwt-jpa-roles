@@ -1,0 +1,43 @@
+plugins {
+    id 'org.springframework.boot' version '2.5.0'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'java'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    runtimeOnly 'mysql:mysql-connector-java'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.security:spring-security-test'
+
+    // security
+    implementation group: 'io.jsonwebtoken', name: 'jjwt', version: '0.9.1'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+
+    // For Spring Boot 2.3 and later, validations do not come out the box so we need to add
+    // the dependency ourselves. The error looks like this 'The import javax.validation cannot be resolved'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+    /*
+        If you run Spring boot with JDK 14 and get this error when trying to authenticate
+        'FilterChain java.lang.NoClassDefFoundError: javax/xml/bind/DatatypeConverter'
+        then just add the dependency below
+
+        implementation group: 'jakarta.xml.bind', name: 'jakarta.xml.bind-api', version: '3.0.1'
+
+    */
+
+}
+
+test {
+    useJUnitPlatform()
+}
