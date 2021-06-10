@@ -78,12 +78,21 @@ public class AuthTokenFilter extends OncePerRequestFilter {
                 */
                 authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
 
+                /*
+                    The SecurityContext associates a given SecurityContext with the current execution thread.
+                    The SecurityContext is the Interface defining the minimum security information associated with the current thread of execution. The getContext() method returns the current
+                    SecurityContext and the setAuthentication() sets the currently authenticated principle. It has an 'authentication' parameter which is
+                    the new Authentication token, or null if no further authentication information should be stored
+                */
                 SecurityContextHolder.getContext().setAuthentication(authentication);
             }
         } catch (Exception e) {
             logger.error("Cannot set user authentication: {}", e);
         }
 
+        // Remember that if all goes well with the request in a filter, we pass the request and response to the next filter. This method doFilterInternal() that we override
+        // takes in a filterChain. To pass the request and response to the next filter, call the doFilter() method on the filterChain passed in. If it is the last filterchain
+        // then the resource at the end of the chain will be invoked.
         filterChain.doFilter(request, response);
     }
 
