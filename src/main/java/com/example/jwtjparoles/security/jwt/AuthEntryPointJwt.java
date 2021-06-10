@@ -15,6 +15,13 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+/*
+    This class is just used to handle exceptions. It it not necessary but it is a nice way to write a custom error message. In your configuration class which extends WebSecurityConfigurerAdapter
+    (in this case the java/main/java/com/example/jwtjparoles/security/WebSecurityConfig) you can add this to the configure(<HttpSecurity>) method instead
+
+    .exceptionHandling().authenticationEntryPoint((req, rsp, e) -> rsp.sendError(HttpServletResponse.SC_UNAUTHORIZED))
+*/
+
 @Component
 public class AuthEntryPointJwt implements AuthenticationEntryPoint {
 
