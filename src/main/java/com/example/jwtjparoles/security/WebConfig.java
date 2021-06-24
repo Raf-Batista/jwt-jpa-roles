@@ -16,7 +16,7 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         // This will allow requests from any origin to any of our mapped endpoints
-        registry.addMapping("/**").allowedOrigins();
+        registry.addMapping("/**").allowedOrigins("http:localhost:3525");
 
         /*
             This will allow requests from these different origins to any of our mapped endpoints

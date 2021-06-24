@@ -18,6 +18,10 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class AuthTokenFilter extends OncePerRequestFilter {
+    // This class is a custom filter we implement and throw in with the other chain of filters. This class extends the
+    // OncePerRequestFilter class that only dispatches once per request, meaning the method below (doFilterInternal) is dispatched once
+    // per request
+
 
     // We create this jwt utility file with some helper methods, such as getting the username from the jwt and generating a new jwt token
     @Autowired
